@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/employee', [EmployeeController::class, 'index']);
+Route::get("/employee", [EmployeeController::class, "index"]);
+
+Route::prefix("users")
+    ->name("users.")
+    ->group(function () {
+        Route::get("/", [UserController::class, "index"]);
+    });

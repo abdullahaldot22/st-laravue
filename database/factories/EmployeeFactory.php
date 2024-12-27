@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Employee>
  */
-class UserFactory extends Factory
+class EmployeeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,11 +20,18 @@ class UserFactory extends Factory
         return [
             "name" => fake()->name(),
             "email" => fake()->unique()->safeEmail(),
+            "designation" => fake()->jobTitle(),
             "phone" => fake()->e164PhoneNumber(),
             "date_of_birth" => fake()->dateTimeBetween(
                 "-60 years",
                 "-19 years"
             ),
+            "joining_date" => fake()->dateTimeBetween("-6 years", "now"),
+            "timezone" => fake()->timezone(),
+            "street" => fake()->streetName(),
+            "address" => fake()->address(),
+            "city" => fake()->city(),
+            "username" => fake()->userName(),
             "email_verified_at" => fake()->dateTime(),
             "password" =>
                 '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
