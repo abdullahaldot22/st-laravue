@@ -13,6 +13,9 @@
                         <router-link active-class="mark" to="/about">About</router-link>
                     </li>
                     <li>
+                        <router-link active-class="mark" to="/user">User</router-link>
+                    </li>
+                    <li>
                         <router-link active-class="mark" to="/employee">Employee</router-link>
                     </li>
                 </ul>
@@ -24,11 +27,27 @@
 
         <br>
         <router-view></router-view>
-        <div class="pb-40"></div>
-        <footer class="fixed bottom-0 left-0 w-full h-40 bg-[#929292] flex items-center justify-around">
-            <div class="pi">One</div>
-            <div class="pii">Two</div>
-            <div class="piii">Three</div>
+        <div class="pb-20"></div>
+        <footer class="w-full pt-5 pb-3 bg-[#929292] flex items-center justify-around">
+            <div class="pi">LOGO</div>
+            <div class="pii">
+                <div class="mb-3">Links</div>
+                <ul class="links flex flex-col">
+                    <li class="mb-1">
+                        <router-link active-class="mark" to="/">Home</router-link>
+                    </li>
+                    <li class="mb-1">
+                        <router-link active-class="mark" to="/about">About</router-link>
+                    </li>
+                    <li class="mb-1">
+                        <router-link active-class="mark" to="/user">User</router-link>
+                    </li>
+                    <li class="mb-1">
+                        <router-link active-class="mark" to="/employee">Employee</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="piii">Contact US</div>
         </footer>
     </div>
 </template>

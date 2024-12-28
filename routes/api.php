@@ -22,8 +22,9 @@ use App\Http\Controllers\UserController;
 
 Route::get("/employee", [EmployeeController::class, "index"]);
 
-Route::prefix("users")
-    ->name("users.")
+Route::prefix("user")
+    ->name("user.")
     ->group(function () {
         Route::get("/", [UserController::class, "index"]);
+        Route::get("/show/{user}", [UserController::class, "show"]);
     });

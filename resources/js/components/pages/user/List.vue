@@ -4,7 +4,7 @@
             <div class="top mb-3 flex items-center justify-end">
                 <router-link
                     class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-                    to="/employee/add">Add Employee</router-link>
+                    to="/user/add">Add User</router-link>
             </div>
 
             <div class="rounded-lg border border-gray-200 dark:border-gray-700">
@@ -54,7 +54,7 @@
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                                     <div class="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1 dark:border-gray-800 dark:bg-gray-900">
                                         <router-link 
-                                            :to="{name : 'employee.view', params : {id : user.id}}"
+                                            :to="{name : 'user.view', params : {id : user.id}}"
                                             class="inline-flex items-center gap-2 rounded-md hover:bg-white px-4 py-2 text-sm hover:text-blue-400 shadow-sm focus:relative dark:hover:bg-gray-800 dark:text-gray-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-4">
