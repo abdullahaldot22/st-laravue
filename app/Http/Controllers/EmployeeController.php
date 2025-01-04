@@ -2,15 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaginateRequest;
+use Exception;
 use App\Models\Employee;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Services\EmployeeService;
+use App\Http\Resources\EmployeeResource;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    private EmployeeService $employeeService;
+
+    public function __construct(EmployeeService $employeeService)
     {
-        $user = Employee::paginate(15);
-        return response()->json($user);
+        $this->employeeService = $employeeService;
+    }
+
+    public function index(PaginateRequest $request)
+    {
+        try {
+            return EmployeeResource::collection($this->employeeService->list($request));
+        } catch (Exception $exception) {
+            return response(
+                ["status" => false, "message" => $exception->getMessage()],
+                422
+            );
+        }
+    }
+
+    public function show (Employee $employee) 
+    {
+        return new EmployeeResource($employee);
     }
 }

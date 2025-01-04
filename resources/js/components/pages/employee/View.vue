@@ -1,18 +1,18 @@
 <template>
     <div class="">test</div>
-    {{ user }}
+    {{ employee }}
 </template>
 
 <script>
 export default {
     name: "View",
     computed : {
-        user : function (params) {
-            return this.$store.getters['user/show'];
+        employee : function (params) {
+            return this.$store.getters['employee/show'];
         }
     },
     mounted() {
-        this.$store.dispatch('user/show', this.$route.params.id);
+        this.$store.dispatch('employee/show', this.$route.params.id);
     }
 }
 </script>

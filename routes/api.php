@@ -20,7 +20,12 @@ use App\Http\Controllers\UserController;
 //     return $request->user();
 // });
 
-Route::get("/employee", [EmployeeController::class, "index"]);
+Route::prefix("employee")
+    ->name("employee.")
+    ->group(function () {
+        Route::get("/", [EmployeeController::class, "index"]);
+        Route::get("/show/{employee}", [EmployeeController::class, "show"]);
+});
 
 Route::prefix("user")
     ->name("user.")

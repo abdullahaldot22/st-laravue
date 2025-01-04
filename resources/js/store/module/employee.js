@@ -1,6 +1,6 @@
 import appService from "../../services/appService.js";
 
-export const user = {
+export const employee = {
     namespaced: true,
     state: {
         lists: [],
@@ -17,9 +17,9 @@ export const user = {
     actions: {
         lists: function (context, payload) {
             return new Promise((resolve, reject) => {
-                let url = `/user`;
+                let url = `/employee`;
                 if (payload) {
-                    url = url + appService.requestHandler(payload);
+                    url = url + appService.requestHandler(payload);                    
                 }
 
                 axios.get(url).then(response => {
@@ -32,7 +32,7 @@ export const user = {
         },
         show: function (context, payload) {
             return new Promise((resolve, reject) => {
-                let url = `/user/show/${payload}`;
+                let url = `/employee/show/${payload}`;
                 axios.get(url).then(response => {
                     context.commit("show", response.data.data);
                     resolve(response);
