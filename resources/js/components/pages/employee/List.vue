@@ -34,7 +34,7 @@
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                         <tr :key="key" v-for="(user, key) in employees">
                             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
-                                {{ key + 1 }}
+                                {{ user.id }}
                             </td>
                             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
                                 {{ user.name }}
@@ -80,7 +80,7 @@
 
             <div class="rounded-b-lg border-t border-gray-200 px-4 py-2 dark:border-gray-700">
                 <div class="flex justify-end gap-1 text-xs font-medium">
-                    <PaginateListComponent/>
+                    <PaginateListComponent :pagination="pagination" :method="getResults"/>
                 </div>
             </div>
 
@@ -90,14 +90,19 @@
 </template>
 
 <script>
+import {ref} from 'vue';
 import PaginateListComponent from '@/components/fregmants/PaginateListComponent.vue';
 
 export default {
     name: "List",
+    components: {
+        PaginateListComponent
+    },
     data() {
         return {
             EmployeeListProps: {
                 paginate    : 1,
+                page        : 1,
                 per_page    : 15,
                 order_column: "id",
                 order_type  : "asc"
@@ -107,10 +112,21 @@ export default {
     computed: {
         employees: function (params) {
             return this.$store.getters['employee/lists'];
+        },
+        pagination: function () {
+            return this.$store.getters['employee/pagination'];
+        },
+
+    },
+    methods : {
+        getResults(page = 1) {
+            this.EmployeeListProps.page = page;
+            this.$store.dispatch('employee/lists', this.EmployeeListProps);
+            
         }
     },
     mounted() {
-        this.$store.dispatch('employee/lists', this.EmployeeListProps);
+        this.getResults();
     }
 };
 </script>
