@@ -1,6 +1,6 @@
 <template>
 <div class="box w-full flex flex-col items-center justify-center">
-    <div class="container w-[1000px] pt-6">
+    <div class="container w-[1100px] pt-6">
         <div class="top mb-3 flex items-center justify-end">
             <router-link class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500" to="/employee/add">Add Employee</router-link>
         </div>
@@ -103,7 +103,7 @@ export default {
             EmployeeListProps: {
                 paginate    : 1,
                 page        : 1,
-                per_page    : 15,
+                per_page    : '',
                 order_column: "id",
                 order_type  : "asc"
             }

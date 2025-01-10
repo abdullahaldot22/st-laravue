@@ -4,11 +4,15 @@ export const user = {
     namespaced: true,
     state: {
         lists: [],
+        pagination: [],
         show: {}
     },
     getters: {
         lists: function (state) {
             return state.lists;
+        },
+        pagination: function (state) {
+            return state.pagination;
         },
         show: function (state) {
             return state.show;
@@ -24,6 +28,7 @@ export const user = {
 
                 axios.get(url).then(response => {
                     context.commit("lists", response.data.data);
+                    context.commit("pagination", response.data);
                     resolve(response);
                 }).catch(error => {
                     reject(error)
@@ -45,6 +50,9 @@ export const user = {
     mutations: {
         lists: function (state, payload) {
             state.lists = payload;
+        },
+        pagination: function (state, payload) {
+            state.pagination = payload;
         },
         show: function (state, payload) {
             state.show = payload;
