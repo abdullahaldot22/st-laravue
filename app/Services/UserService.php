@@ -37,4 +37,41 @@ class UserService
             throw new Exception($exception->getMessage(), 422);
         }
     }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function store(UserRequest $request)
+    {
+        try {
+            return User::create([
+                'name'     => $request->name,
+                'email'    => $request->email,
+                'phone'    => $request->phone,
+                'password' => Hash::make($request->password)
+            ]);
+        } catch (Exception $exception) {
+            Log::info($exception);
+            throw new Exception($exception->getMessage(), 422);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function update(User $user, UserRequest $request): User
+    {
+        try {
+            $user->name     = $request->name;
+            $user->email    = $request->email;
+            $user->phone    = $request->phone;
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return $user;
+        } catch (Exception $exception) {
+            Log::info($exception);
+            throw new Exception($exception->getMessage(), 422);
+        }
+    }
 }

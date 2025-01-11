@@ -65,8 +65,7 @@
                                             </svg>
                                         </router-link>
 
-                                        <router-link
-                                        to="#"
+                                        <button @click.prevent="edit(user)"
                                             class="inline-flex items-center gap-2 rounded-md hover:bg-white px-4 py-2 text-sm hover:text-blue-400 shadow-sm focus:relative dark:hover:bg-gray-800 dark:text-gray-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -74,7 +73,7 @@
                                                     d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                             </svg>
 
-                                        </router-link>
+                                        </button>
 
 
                                         <router-link
@@ -130,6 +129,33 @@ export default {
             this.UserListProps.page = page;
             this.$store.dispatch('user/lists', this.UserListProps);
         },
+        edit: function(user) {
+            console.log('edit');
+            
+            this.$store.dispatch('user/temp', user.id);
+            this.props.form.name = user.name;
+            this.props.form.email = user.email;
+            this.props.form.phone = user.phone;
+        },
+        reset: function () {
+            appService.modalHide('#modal');
+            this.errors              = {};
+            this.props.form.name     = null;
+            this.props.form.email    = null;
+            this.props.form.phone    = null;
+            this.props.form.password = null;
+        },
+        save: function () {
+            try {
+                this.$store.dispatch('user/save', this.props).then(res => {
+                    this.reset();
+                }).catch((err) => {
+                    this.errors = err.response.data.errors;
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        }
     },
     computed : {
         users : function (params) {

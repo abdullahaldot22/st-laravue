@@ -5,7 +5,11 @@ export const user = {
     state: {
         lists: [],
         pagination: [],
-        show: {}
+        show: {},
+        temp: {
+            temp_id: null,
+            isEditing: false,
+        },
     },
     getters: {
         lists: function (state) {
@@ -34,6 +38,32 @@ export const user = {
                     reject(error)
                 })
             });
+        },
+        save: function (context, payload) {
+            let method = axios.post;
+            let url    = "/user";
+            if (context.state.temp.isEditing) {
+                method = axios.put;
+                url    = `/user/update/${context.state.temp.temp_id}`;
+            }
+
+            return new Promise((resolve, reject) => {
+                method(url, payload.form).then(res => {
+                    context.dispatch('lists', payload.search).then().catch();
+                    context.dispatch('reset').then().catch();
+                    resolve(res);
+                }).catch((err) => {
+                    reject(err);
+                })
+            })
+        },
+        temp: function (context, payload) {
+            context.state.temp.temp_id   = payload;
+            context.state.temp.isEditing = true;
+        },
+        reset: function (context) {
+            context.state.temp.temp_id   = null;
+            context.state.temp.isEditing = false;
         },
         show: function (context, payload) {
             return new Promise((resolve, reject) => {

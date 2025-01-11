@@ -32,4 +32,6 @@ Route::prefix("user")
     ->group(function () {
         Route::get("/", [UserController::class, "index"]);
         Route::get("/show/{user}", [UserController::class, "show"]);
+        Route::post('/', [UserController::class, 'store']);
+        Route::match(['put', 'patch'], '/update/{user}', [UserController::class, 'update']);
     });
