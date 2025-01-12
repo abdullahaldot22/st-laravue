@@ -12,6 +12,7 @@
                         id="name"
                         v-model="form.name"
                     />
+                    <p :class="errors.name ? 'text-red-700 text-xs mt-1' : ''" v-if="errors.name">{{ errors.name[0] }}</p>
                 </div>
 
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -24,6 +25,7 @@
                             id="email"
                             v-model="form.email"
                         />
+                        <p :class="errors.email ? 'text-red-700 text-xs mt-1' : ''" v-if="errors.email">{{ errors.email[0] }}</p>
                     </div>
 
                     <div>
@@ -35,6 +37,7 @@
                             id="phone"
                             v-model="form.phone"
                         />
+                        <p :class="errors.phone ? 'text-red-700 text-xs mt-1' : ''" v-if="errors.phone">{{ errors.phone[0] }}</p>
                     </div>
                 </div>
 
@@ -48,6 +51,7 @@
                             id="dbo"
                             v-model="form.dob"
                         />
+                        <p :class="errors.dob ? 'text-red-700 text-xs mt-1' : ''" v-if="errors.dob">{{ errors.dob[0] }}</p>
                     </div>
                 </div>
 
@@ -97,8 +101,7 @@ export default {
                 this.form.dob   = null;
                 this.$router.push('/user');
             }).catch((err) => {
-                console.log(err);
-                
+                this.errors = err.response.data.errors;
             })
         },
         formatDate : function (date) {

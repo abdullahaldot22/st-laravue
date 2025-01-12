@@ -57,6 +57,19 @@ export const user = {
                 })
             })
         },
+        delete : function (context, payload) {
+            let method = axios.delete;
+            let url    = `/user/delete/${payload}`;
+            
+            return new Promise((resolve, reject) => {
+                method(url, payload.form).then(res => {
+                    context.dispatch('lists', payload.search).then().catch();
+                    resolve(res);
+                }).catch((err) => {
+                    reject(err);
+                })
+            })
+        },
         temp: function (context, payload) {
             context.state.temp.temp_id   = payload;
             context.state.temp.isEditing = true;

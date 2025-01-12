@@ -76,7 +76,7 @@
                                         </router-link>
 
 
-                                        <button @click.prevent=""
+                                        <button v-on:click="this.delete(user.id)"
                                             class="inline-flex items-center gap-2 rounded-md hover:bg-white px-4 py-2 text-sm hover:text-blue-400 shadow-sm focus:relative dark:hover:bg-gray-800 dark:text-gray-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -129,16 +129,18 @@ export default {
             this.$store.dispatch('user/lists', this.UserListProps);
         },
         edit: function(user) {
-            console.log(user);
-            
-            // this.$store.dispatch('user/temp', user.id);
-            this.props.form.name = user.name;
+            this.$store.dispatch('user/temp', user.id).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            });
+            this.props.form.name  = user.name;
             this.props.form.email = user.email;
             this.props.form.phone = user.phone;
         },
         delete : function (id) {
             console.log(id);
-            
+            this.$store.dispatch('user/delete', id);
         },
         reset: function () {
             this.errors              = {};
