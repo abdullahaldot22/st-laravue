@@ -6,6 +6,8 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\PaginateRequest;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -46,10 +48,11 @@ class UserService
     {
         try {
             return User::create([
-                'name'     => $request->name,
-                'email'    => $request->email,
-                'phone'    => $request->phone,
-                'password' => Hash::make($request->password)
+                'name'          => $request->name,
+                'email'         => $request->email,
+                'phone'         => $request->phone,
+                'date_of_birth' => $request->dob,
+                'password'      => Hash::make('password'),
             ]);
         } catch (Exception $exception) {
             Log::info($exception);
@@ -63,10 +66,11 @@ class UserService
     public function update(User $user, UserRequest $request): User
     {
         try {
-            $user->name     = $request->name;
-            $user->email    = $request->email;
-            $user->phone    = $request->phone;
-            $user->password = Hash::make($request->password);
+            $user->name          = $request->name;
+            $user->email         = $request->email;
+            $user->phone         = $request->phone;
+            $user->date_of_birth = $request->dob;
+            $user->password      = Hash::make('password');
             $user->save();
             return $user;
         } catch (Exception $exception) {

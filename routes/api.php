@@ -34,4 +34,5 @@ Route::prefix("user")
         Route::get("/show/{user}", [UserController::class, "show"]);
         Route::post('/', [UserController::class, 'store']);
         Route::match(['put', 'patch'], '/update/{user}', [UserController::class, 'update']);
+        Route::delete('/delete/{user}', [UserController::class, 'delete']);
     });

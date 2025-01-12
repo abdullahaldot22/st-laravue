@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\PaginateRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 
 class UserController extends Controller
@@ -58,6 +59,14 @@ class UserController extends Controller
             return new UserResource($this->userService->update($user, $request));
         } catch (Exception $exception) {
             return response(['status' => false, 'message' => $exception->getMessage()], 422);
+        }
+    }
+
+    public function delete(User $user) {
+        try {
+            $user->delete();
+        } catch (\Throwable $th) {
+            throw new Exception($th->getMessage(), 422);
         }
     }
 }

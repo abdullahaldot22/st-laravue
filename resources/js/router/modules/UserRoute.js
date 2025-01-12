@@ -21,9 +21,9 @@ export default [
                 component : Add
             },
             {
-                path : "edit",
+                path : "edit/:id",
                 name : "user.edit",
-                component : Edit
+                component : Add,
             },
             {
                 path : ":id",

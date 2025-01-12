@@ -79,19 +79,48 @@ export default {
             errors : {},
         }
     },
+    computed: {
+        user: function () {
+            return this.$store.getters['user/show'];
+        }
+    },
     methods : {
         save: function () {
+            if (this.$route.params.id) {
+                this.$store.dispatch('user/temp', this.user.id);
+            }
             this.$store.dispatch('user/save', {form : this.form, id: this.$route.params.id}).then(res => {
-                this.errors        = {};
-                this.form.name     = null;
-                this.form.email    = null;
-                this.form.phone    = null;
-                this.form.password = null;
-                router.push('/');
+                this.errors     = {};
+                this.form.name  = null;
+                this.form.email = null;
+                this.form.phone = null;
+                this.form.dob   = null;
+                this.$router.push('/user');
             }).catch((err) => {
-                this.errors = err.response.data.errors;
+                console.log(err);
+                
             })
+        },
+        formatDate : function (date) {
+            let   timestamp = new Date(date);
+            const year      = timestamp.getFullYear();
+            const month     = String(timestamp.getMonth() + 1).padStart(2, '0');  // Months are 0-based
+            const day       = String(timestamp.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        } ,
+    }, 
+    beforeCreate() {
+        if (this.$route.params.id) {
+            this.$store.dispatch('user/show', this.$route.params.id).then(res => {
+                this.status     = true;
+                this.form.name  = res.data.data.name;
+                this.form.email = res.data.data.email;
+                this.form.phone = res.data.data.phone;
+                this.form.dob   = this.formatDate(res.data.data.dob);
+            }).catch(err => {
+                this.$router.push('/');
+            });
         }
-    }
+    },
 };
 </script>
