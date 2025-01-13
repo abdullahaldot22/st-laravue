@@ -1,5 +1,12 @@
 /.phpunit.cache
-/node_modules
+node_modules
 public/build
 vendor
 package-lock.json
+public/hot
+public/build/manifest.json
+public/build/assets/app-83d4b308.js
+public/build/assets/app-b7c69b98.css
+.gitignore
+public/build/manifest.json
+public/hot

@@ -49,7 +49,7 @@ export const user = {
 
             return new Promise((resolve, reject) => {
                 method(url, payload.form).then(res => {
-                    context.dispatch('lists', payload.search).then().catch();
+                    context.dispatch('lists', payload.paginate).then().catch();
                     context.dispatch('reset').then().catch();
                     resolve(res);
                 }).catch((err) => {
@@ -59,11 +59,11 @@ export const user = {
         },
         delete : function (context, payload) {
             let method = axios.delete;
-            let url    = `/user/delete/${payload}`;
+            let url    = `/user/delete/${payload.id}`;
             
             return new Promise((resolve, reject) => {
                 method(url, payload.form).then(res => {
-                    context.dispatch('lists', payload.search).then().catch();
+                    context.dispatch('lists', payload.paginate).then().catch();
                     resolve(res);
                 }).catch((err) => {
                     reject(err);
