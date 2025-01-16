@@ -10,3 +10,5 @@ public/build/assets/app-b7c69b98.css
 .gitignore
 public/build/manifest.json
 public/hot
+public/build/manifest.json
+package-lock.json
