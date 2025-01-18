@@ -4,6 +4,7 @@ use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StuffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,10 @@ Route::prefix("user")
         Route::post('/', [UserController::class, 'store']);
         Route::match(['put', 'patch'], '/update/{user}', [UserController::class, 'update']);
         Route::delete('/delete/{user}', [UserController::class, 'delete']);
-    });
+});
+
+Route::prefix('stuff')
+->name('stuff.')
+->group(function () {
+    Route::get('/', [StuffController::class, 'index']);
+});

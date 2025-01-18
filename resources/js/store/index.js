@@ -1,6 +1,7 @@
-import {createStore} from "vuex";
-import {user} from "./module/user.js";
-import { employee } from "./module/employee.js";
+import { createStore } from "vuex";
+import { user } from "./module/userState.js";
+import { employee } from "./module/employeeState.js";
+import { stuff } from "./module/stuffState.js";
 
 export default new createStore({
     state: {},
@@ -9,5 +10,6 @@ export default new createStore({
     modules: {
         user,
         employee,
+        stuff,
     }
 })

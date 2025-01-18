@@ -4,7 +4,7 @@
             <div class="top mb-3 flex items-center justify-end">
                 <router-link
                     class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-                    to="/user/add">Add User</router-link>
+                    to="#">Add Stuff</router-link>
             </div>
 
             <div class="rounded-lg border border-gray-200 dark:border-gray-700">
@@ -35,26 +35,26 @@
                         </thead>
 
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                            <tr :key="key" v-for="(user, key) in users">
+                            <tr :key="key" v-for="(stuff, key) in stuffs">
                                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
                                     {{ key + 1 }} 
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
-                                    {{ user.name }}
+                                    {{ stuff.name }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
-                                    {{ user.email }}
+                                    {{ stuff.email }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
-                                    {{ user.phone }}
+                                    {{ stuff.phone }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
-                                    {{ user.dob }}
+                                    {{ stuff.dob }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                                     <div class="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1 dark:border-gray-800 dark:bg-gray-900">
                                         
-                                        <router-link :to="{name : 'user.view', params : {id : user.id}}"
+                                        <router-link :to="{name : 'stuff.view', params : {id : stuff.id}}"
                                             class="inline-flex items-center gap-2 rounded-md hover:bg-white px-4 py-2 text-sm hover:text-blue-400 shadow-sm focus:relative dark:hover:bg-gray-800 dark:text-gray-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -65,7 +65,7 @@
                                             </svg>
                                         </router-link>
 
-                                        <router-link :to="{name : 'user.edit', params : {id : user.id}}"
+                                        <router-link :to="{name : 'stuff.edit', params : {id : stuff.id}}"
                                             class="inline-flex items-center gap-2 rounded-md hover:bg-white px-4 py-2 text-sm hover:text-blue-400 shadow-sm focus:relative dark:hover:bg-gray-800 dark:text-gray-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -76,7 +76,7 @@
                                         </router-link>
 
 
-                                        <button @click="this.delete(user)"
+                                        <button @click="this.delete(stuff)"
                                             class="inline-flex items-center gap-2 rounded-md hover:bg-white px-4 py-2 text-sm hover:text-blue-400 shadow-sm focus:relative dark:hover:bg-gray-800 dark:text-gray-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-4">
