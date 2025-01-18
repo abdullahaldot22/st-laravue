@@ -5,7 +5,7 @@
                 <div class="logo">LOGO</div>
             </div>
             <div class="pii">
-                <ul class="links flex">
+                <ul class="links top flex">
                     <li>
                         <router-link active-class="mark" to="/">Home</router-link>
                     </li>
@@ -17,6 +17,9 @@
                     </li>
                     <li>
                         <router-link active-class="mark" to="/employee">Employee</router-link>
+                    </li>
+                    <li>
+                        <router-link active-class="mark" to="/stuff">Stuff</router-link>
                     </li>
                 </ul>
             </div>
@@ -45,6 +48,9 @@
                     <li class="mb-1">
                         <router-link active-class="mark" to="/employee">Employee</router-link>
                     </li>
+                    <li class="mb-1">
+                        <router-link active-class="mark" to="/stuff">Stuff</router-link>
+                    </li>
                 </ul>
             </div>
             <div class="piii">Contact US</div>
@@ -59,8 +65,11 @@ export default {
 </script>
 
 <style scoped>
+.links.top li {
+    text-align: center;
+}
 .links li{
-    width: 80px;
+    width: 120px;
 }
 .mark{
     font-weight: 600;

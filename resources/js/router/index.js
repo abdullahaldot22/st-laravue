@@ -5,6 +5,7 @@ import Home from "@/components/pages/Home.vue";
 import AboutRoute from "./modules/AboutRoute";
 import EmployeeRoute from "./modules/EmployeeRoute";
 import UserRoute from "./modules/UserRoute";
+import StuffRoute from "./modules/StuffRoute";
 
 const myRoutes = [
     {
@@ -17,7 +18,8 @@ const myRoutes = [
 const routes = myRoutes.concat(
     AboutRoute,
     EmployeeRoute,
-    UserRoute
+    UserRoute,
+    StuffRoute
 );
 
 const router = createRouter({

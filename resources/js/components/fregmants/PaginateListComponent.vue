@@ -16,7 +16,7 @@ export default {
     name : "PaginateListComponent",
 	data () {
 		return {
-			classes : ['!hover:cursor-pointer', 'rounded-md', 'mx-0.5'],
+			classes : ['hover:cursor-pointer', 'hover:bg-gray-200', 'rounded-md', 'mx-0.5', 'transition-all', 'p-[2px]'],
             activeClass : ['bg-gray-800', 'text-white', 'rounded-lg'],
 		}
 	},
